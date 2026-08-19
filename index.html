@@ -1,1 +1,42 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promosi Produk AR</title>
+  <!-- Load modul model-viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif; }
+    model-viewer { width: 100vw; height: 80vh; background-color: #f5f5f5; }
+    .btn-container { text-align: center; padding: 20px; }
+    .btn-buy { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- Komponen AR -->
+  <model-viewer 
+    src="produk.glb" 
+    ios-src="produk.usdz"
+    alt="Model 3D Produk Promosi" 
+    ar 
+    ar-modes="webxr scene-viewer quick-look" 
+    camera-controls 
+    auto-rotate
+    shadow-intensity="1">
+    
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; padding: 10px 15px; font-weight: bold;">
+      Lihat di Ruangan Anda (AR) 📱
+    </button>
+  </model-viewer>
+
+  <!-- CTA Promosi/Penjualan -->
+  <div class="btn-container">
+    <h2>Promo Khusus Hari Ini!</h2>
+    <button class="btn-buy" onclick="alert('Lanjut ke Pembelian!')">Beli Sekarang</button>
+  </div>
+
+</body>
+</html>
