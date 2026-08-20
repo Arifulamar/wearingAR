@@ -3,84 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebAR Custom 3D</title>
-    
-    <!-- Memuat pustaka A-Frame dan Mind-AR -->
+    <title>WebAR GLB Final</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
-    
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        /* Petunjuk di layar */
-        .ar-instructions {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999;
-            background: rgba(0, 0, 0, 0.75);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-family: sans-serif;
-            font-size: 14px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-    </style>
 </head>
-<body>
+<body style="margin: 0; overflow: hidden;">
 
-    <!-- Keterangan untuk pengguna -->
-    <div class="ar-instructions">
-        Arahkan kamera ke gambar marker Anda!
-    </div>
-
-    <!-- Scene AR -->
-    <a-scene 
-        mindar-image="imageTargetSrc: target.mind;" 
-        color-space="sRGB" 
-        renderer="colorManagement: true, physicallyCorrectLights: true" 
-        vr-mode-ui="enabled: false" 
-        device-orientation-permission-ui="enabled: false">
+    <a-scene mindar-image="imageTargetSrc: target.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         
-        <!-- Memuat Aset 3D (.glb / .gltf) -->
         <a-assets>
-            <a-asset-item id="customModel" src="model.gtlf"></a-asset-item>
+            <!-- Pastikan nama file .glb Anda di folder adalah model.glb -->
+            <a-asset-item id="model3d" src="model.glb"></a-asset-item>
         </a-assets>
 
-        <!-- Kamera AR -->
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- Target Marker Pertama (Index 0) -->
         <a-entity mindar-image-target="targetIndex: 0">
-            <!-- Menampilkan Objek 3D -->
-            <!-- 
-                Catatan: 
-                - ganti scale jika objek terlalu besar/kecil (misal: 0.1 0.1 0.1)
-                - ganti position (X Y Z) jika posisinya perlu digeser
-                - ganti rotation (X Y Z) untuk memutar posisi awal objek
-            -->
-            <!-- Ganti a-gltf-model dengan ini untuk pengetesan -->
-          <a-box color="red" position="0 0 0" scale="0.5 0.5 0.5"></a-box>
-          <!--  <a-gltf-model 
-                src="#customModel" scale="5 5 5" position="0 0.5 0">
-            </a-gltf-model> -->
+            <a-gltf-model src="#model3d" position="0 0 0" scale="1 1 1" rotation="0 0 0"></a-gltf-model>
         </a-entity>
 
     </a-scene>
-<script>
-        // Script untuk mengecek apakah file 3D sukses dimuat atau error
-        const modelEl = document.querySelector('#model');
-        modelEl.addEventListener('loaded', function() {
-            console.log("SUKSES: File model.glb berhasil dimuat oleh browser!");
-        });
-        modelEl.addEventListener('error', function(err) {
-            console.error("GAGAL: Terjadi error saat meload model.glb:", err);
-        });
-    </script>
+
 </body>
 </html>
