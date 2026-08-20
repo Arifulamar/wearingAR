@@ -72,6 +72,15 @@
         </a-entity>
 
     </a-scene>
-
+<script>
+        // Script untuk mengecek apakah file 3D sukses dimuat atau error
+        const modelEl = document.querySelector('#model');
+        modelEl.addEventListener('loaded', function() {
+            console.log("SUKSES: File model.glb berhasil dimuat oleh browser!");
+        });
+        modelEl.addEventListener('error', function(err) {
+            console.error("GAGAL: Terjadi error saat meload model.glb:", err);
+        });
+    </script>
 </body>
 </html>
